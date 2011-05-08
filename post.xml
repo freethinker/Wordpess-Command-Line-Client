@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<post>
+<from>admin</from>
+<subject><![CDATA[Convert a set of Images to a Youtube Video (PNV->AVI->FLV)]]></subject>
+<status possvals="draft,publish">draft</status>
+<categories>Tips-N-Tricks</categories>
+<tags>youtube,ffmpeg,mencoder</tags>
+<body><![CDATA[
+If you have a set of png files, let say screenshots of a new application you have created and you want to convert them into a video, then this is how you do it.
+
+<pre>
+mencoder <span class="Operator">&quot;</span><span class="String">mf://*.png</span><span class="Operator">&quot;</span> <span class="Special">-mf</span> <span class="Identifier">fps</span>=<span class="Number">0</span>.<span class="Number">5</span> <span class="Special">-ovc</span> lavc <span class="Special">-lavcopts</span> vhq:<span class="Identifier">vbitrate</span>=<span class="Number">1500</span> <span class="Special">-o</span> video.avi
+ffmpeg <span class="Special">-i</span> video.avi <span class="Special">-b</span> 2028k <span class="Special">-s</span> 320x480 <span class="Special">-r</span> <span class="Number">30</span> <span class="Special">-acodec</span> copy video.flv
+</pre>
+
+This first command will convert the png files in your present directory into an avi file. The second one will convert it from avi to flv. FLV is the format used by youtube.
+]]></body>
+</post>
