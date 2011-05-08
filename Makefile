@@ -7,14 +7,14 @@ CFLAGS  += $(shell xmlrpc-c-config client --cflags)
 LDFLAGS += $(shell xmlrpc-c-config client --libs)
 CFLAGS  += $(shell pkg-config --cflags libxml-2.0) -I../include/
 LDFLAGS += $(shell pkg-config --libs libxml-2.0)
-TARGETS=wppost
-WPPOSTOBJS=wppost.o utilFuncs.o
-OBJS=$(WPPOSTOBJS)
+TARGETS=wpress
+WPRESSOBJS=wpress.o utilFuncs.o
+OBJS=$(WPRESSOBJS)
 
 all: $(TARGETS)
 
-wppost: $(WPPOSTOBJS)
-	$(CC) -o wppost $(WPPOSTOBJS) $(CFLAGS) $(LDFLAGS) $(DEFINES)
+wpress: $(WPRESSOBJS)
+	$(CC) -o wpress $(WPRESSOBJS) $(CFLAGS) $(LDFLAGS) $(DEFINES)
 
 clean:
 	rm -f $(TARGETS) $(OBJS) 2>/dev/null

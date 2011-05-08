@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <post>
+<postid>696</postid>
 <url>http://www.humbug.in/xmlrpc.php</url>
-<subject><![CDATA[Sample Subject]]></subject>
+<subject><![CDATA[Convert a set of Images to a Youtube Video (PNV->AVI->FLV)]]></subject>
 <status possvals="draft,publish">draft</status>
 <categories>Tips-N-Tricks</categories>
 <tags>youtube,ffmpeg,mencoder</tags>
