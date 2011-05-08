@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <post>
-<postid>696</postid>
-<url>http://www.humbug.in/xmlrpc.php</url>
-<subject><![CDATA[Convert a set of Images to a Youtube Video (PNV->AVI->FLV)]]></subject>
-<status possvals="draft,publish">draft</status>
-<categories>Tips-N-Tricks</categories>
-<tags>youtube,ffmpeg,mencoder</tags>
+<!-- Path to xmlrpc.php for your blog -->
+<url>http://testwp.humbug.in/xmlrpc.php</url>
+<!-- Subject can include special characters -->
+<subject><![CDATA[Sample Subject]]></subject>
+<!-- Valid values are draft/publish -->
+<status>draft</status>
+<!-- Comma separated, no spaces in between -->
+<categories>Category1,Category2</categories>
+<!-- Comma separated, no spaces in between -->
+<tags>Tag1,Tag2</tags>
+<!-- Body can include special characters -->
 <body><![CDATA[
-If you have a set of png files, let say screenshots of a new application you have created and you want to convert them into a video, then this is how you do it.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum lobortis tincidunt. Vestibulum blandit turpis justo, tempus molestie augue. Nunc ut ante elit, vitae vehicula enim. Nunc in hendrerit purus. Cras molestie erat nec odio eleifend pharetra. Donec sed mi a quam lobortis sollicitudin nec laoreet sem. Praesent massa orci, imperdiet vel sodales in, viverra sed odio. Quisque luctus elit id neque lobortis eget molestie dolor condimentum. Suspendisse euismod ipsum quis mi imperdiet feugiat. Praesent commodo, velit sed hendrerit auctor, dolor erat egestas dolor, id semper justo arcu id lacus.
 
-<pre>
-mencoder <span class="Operator">&quot;</span><span class="String">mf://*.png</span><span class="Operator">&quot;</span> <span class="Special">-mf</span> <span class="Identifier">fps</span>=<span class="Number">0</span>.<span class="Number">5</span> <span class="Special">-ovc</span> lavc <span class="Special">-lavcopts</span> vhq:<span class="Identifier">vbitrate</span>=<span class="Number">1500</span> <span class="Special">-o</span> video.avi
-ffmpeg <span class="Special">-i</span> video.avi <span class="Special">-b</span> 2028k <span class="Special">-s</span> 320x480 <span class="Special">-r</span> <span class="Number">30</span> <span class="Special">-acodec</span> copy video.flv
-</pre>
+In hac habitasse platea dictumst. Nunc faucibus placerat felis ut ultricies. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer mattis vulputate tellus quis egestas. Duis quam libero, porta ut condimentum ac, fringilla at justo. Sed pulvinar tellus id mauris congue et sagittis urna pretium. Donec lacinia malesuada aliquam. Mauris auctor dapibus nisi eget facilisis. Praesent neque erat, tincidunt a venenatis venenatis, malesuada et enim. Aenean congue elementum enim sit amet volutpat. Nullam ac tellus at mi porttitor interdum lacinia vel tortor. Pellentesque est urna, tristique eu dignissim in, elementum nec lacus. Mauris dictum aliquam nisl, vel laoreet elit rhoncus porta. Vivamus consequat risus nec enim tempor et aliquam urna cursus. Etiam neque justo, convallis eu bibendum et, viverra eget eros. Vivamus vitae pellentesque urna. Sed magna sapien, volutpat nec consequat vitae, volutpat in magna.
 
-This first command will convert the png files in your present directory into an avi file. The second one will convert it from avi to flv. FLV is the format used by youtube.
+In interdum elementum justo at posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu tempus augue. Ut non sapien sem. Donec lectus massa, auctor in consectetur at, adipiscing vitae neque. Proin velit ante, blandit et rhoncus sed, egestas a est. Duis rhoncus, risus eu ultrices blandit, lorem turpis gravida augue, non consectetur neque odio sed urna. Nullam ornare est sed nulla porttitor aliquam. Curabitur est mi, condimentum ut sagittis eget, rhoncus a sapien. Ut sollicitudin odio a sapien dictum non adipiscing justo congue. Sed imperdiet elit nulla, sit amet dictum augue. Pellentesque ut porttitor purus. Etiam leo metus, posuere nec rhoncus a, adipiscing eu lacus. Sed pellentesque condimentum vestibulum. Etiam luctus scelerisque dolor, et bibendum enim iaculis in. Vestibulum hendrerit, quam quis consectetur mattis, massa mauris consectetur leo, id varius sem erat at augue. Sed varius consectetur neque, eget lacinia risus feugiat id. Fusce facilisis est a magna tincidunt blandit. Morbi quis condimentum est.
 ]]></body>
 </post>

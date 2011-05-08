@@ -2,7 +2,7 @@
 #include "debug.h"
 #include "utilFuncs.h"
 
-#define NAME "Command Line Wordpress Client"
+#define NAME "Wordpress Command Line Client"
 #define VERSION "0.1"
 
 void
@@ -170,6 +170,7 @@ out:
 int 
 wpNewPost(char *username, char *password, wppost_t *post) {
 	int retval = 0;
+	char *postid = NULL;
 	xmlrpc_env env;
 	xmlrpc_client *clientP;
 	xmlrpc_server_info * serverInfoP;
@@ -184,9 +185,10 @@ wpNewPost(char *username, char *password, wppost_t *post) {
 		goto out;
 	}
 	serverInfoP = xmlrpc_server_info_new(&env, post->url);
-	print_values(&env, paramArrayP);
 	xmlrpc_client_call2(&env, clientP, serverInfoP, methodName, paramArrayP, &resultP);
-	print_values(&env, resultP);
+	xmlrpc_read_string(&env, resultP,(const char **) &postid);
+	strcpy(post->postid, postid);
+	free(postid);
 	xmlrpc_DECREF(resultP);	
 out:
 	xmlrpc_DECREF(paramArrayP);
