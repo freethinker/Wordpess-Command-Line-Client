@@ -1,9 +1,53 @@
 #include "wpress.h"
 #include "debug.h"
 #include "utilFuncs.h"
+#include "clean_string.h"
 
 #define NAME "Wordpress Command Line Client"
 #define VERSION "0.1"
+#define WPRESSPATH ".wpress"
+
+char *
+clean_string(char *string) {
+	char *fnameptr, *fnameptrbak;
+	fnameptr = clean_uncgi(string, NULL);
+	fnameptrbak = fnameptr;
+	fnameptr = clean_safe_basic(fnameptr, NULL);
+	free(fnameptrbak);
+	fnameptrbak = fnameptr;
+	fnameptr = clean_iso8859_1_basic(fnameptr, NULL);
+	free(fnameptrbak);
+	fnameptrbak = fnameptr;
+	fnameptr = clean_max_length(fnameptr, NULL);
+	free(fnameptrbak);
+	fnameptrbak = fnameptr;
+	fnameptr = clean_wipeup(fnameptr, NULL);
+	free(fnameptrbak);
+	return fnameptr;
+}
+
+void 
+savePostXml(char *filename, wppost_t *post) {
+	char xmlfilepath[300];
+	char dirpath[300];
+	char *subject;
+	xmlDocPtr doc = xmlParseFile(filename);
+	xmlNodePtr urlNode = getNodeByXpath(doc, (xmlChar *) "/post/url");
+	xmlNodePtr postIdNode = xmlNewNode (NULL, BAD_CAST "postid");
+	xmlNodePtr blogIdNode = xmlNewNode (NULL, BAD_CAST "blogid");
+	xmlNodeSetContent(postIdNode, (xmlChar *) post->postid);
+	xmlNodeSetContent(blogIdNode, (xmlChar *) post->blogid);
+	xmlAddPrevSibling(urlNode, blogIdNode);
+	xmlAddPrevSibling(urlNode, postIdNode);
+	sprintf(dirpath, "%s/%s", getenv("HOME"), WPRESSPATH); 
+	mkdir(dirpath, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	subject = clean_string(post->subject);
+	sprintf(xmlfilepath, "%s/post-%s-%s.xml", dirpath, post->postid, subject); 
+	free(subject);
+	xmlSaveFormatFileEnc(xmlfilepath, doc, "UTF-8", 1);
+	printf("Saved as %s\n", xmlfilepath);
+	xmlFreeDoc(doc);
+}
 
 void
 parsePostXml(char *filename, 	wppost_t *post) {
@@ -157,7 +201,6 @@ wpEditPost(char *username, char *password, wppost_t *post) {
 		goto out;
 	}
 	serverInfoP = xmlrpc_server_info_new(&env, post->url);
-	print_values(&env, paramArrayP);
 	xmlrpc_client_call2(&env, clientP, serverInfoP, methodName, paramArrayP, &resultP);
 	print_values(&env, resultP);
 	xmlrpc_DECREF(resultP);	
@@ -187,8 +230,7 @@ wpNewPost(char *username, char *password, wppost_t *post) {
 	serverInfoP = xmlrpc_server_info_new(&env, post->url);
 	xmlrpc_client_call2(&env, clientP, serverInfoP, methodName, paramArrayP, &resultP);
 	xmlrpc_read_string(&env, resultP,(const char **) &postid);
-	strcpy(post->postid, postid);
-	free(postid);
+	post->postid = postid;
 	xmlrpc_DECREF(resultP);	
 out:
 	xmlrpc_DECREF(paramArrayP);
@@ -216,11 +258,15 @@ int main(int argc, const char **argv) {
 	if (post.postid == NULL) {
 	/* New Post */
 		retval = wpNewPost(username, password, &post);
+		if ( retval != 0 )
+			goto out1;
+		savePostXml(postxml, &post);
 	} else {
 	/* Edit Post */
 		retval = wpEditPost(username, password, &post);
 	}
 
+out1:
 	free_wppost(&post);
 out:
 	return retval;
