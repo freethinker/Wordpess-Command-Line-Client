@@ -7,25 +7,6 @@
 #define VERSION "0.1"
 #define WPRESSPATH ".wpress"
 
-char *
-clean_string(char *string) {
-	char *fnameptr, *fnameptrbak;
-	fnameptr = clean_uncgi(string, NULL);
-	fnameptrbak = fnameptr;
-	fnameptr = clean_safe_basic(fnameptr, NULL);
-	free(fnameptrbak);
-	fnameptrbak = fnameptr;
-	fnameptr = clean_iso8859_1_basic(fnameptr, NULL);
-	free(fnameptrbak);
-	fnameptrbak = fnameptr;
-	fnameptr = clean_max_length(fnameptr, NULL);
-	free(fnameptrbak);
-	fnameptrbak = fnameptr;
-	fnameptr = clean_wipeup(fnameptr, NULL);
-	free(fnameptrbak);
-	return fnameptr;
-}
-
 void 
 savePostXml(char *filename, wppost_t *post) {
 	char xmlfilepath[300];
