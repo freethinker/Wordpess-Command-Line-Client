@@ -1,3 +1,20 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  wpress.c
+ *
+ *    Description:  Command Line Wordpress Client
+ *
+ *        Version:  1.0
+ *        Created:  06/09/2011 08:18:26 AM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Pratik Sinha (freethinker), pratik@humbug.in
+ *        Company:  http://www.humbug.in/
+ *
+ * =====================================================================================
+ */
 #include "wpress.h"
 #include "debug.h"
 #include "utilFuncs.h"
