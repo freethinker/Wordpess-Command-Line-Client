@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  debug.h
+ *
+ *    Description:  Debug MACROS
+ *
+ *        Version:  1.0
+ *        Created:  06/09/2011 08:19:52 AM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Pratik Sinha (freethinker), pratik@humbug.in
+ *        Company:  http://www.humbug.in/
+ *
+ * =====================================================================================
+ */
+
 #ifndef _DEBUG_H
 #define _DEBUG_H
 

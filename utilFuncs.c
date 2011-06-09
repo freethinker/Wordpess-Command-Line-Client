@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  utilFuncs.c
+ *
+ *    Description:  Utility Functions
+ *
+ *        Version:  1.0
+ *        Created:  06/09/2011 08:21:22 AM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Pratik Sinha (freethinker), pratik@humbug.in
+ *        Company:  http://www.humbug.in/
+ *
+ * =====================================================================================
+ */
+
 #include "utilFuncs.h"
 
 char *
